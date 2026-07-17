@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 | StellarX</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafbfc; color: #111; overflow-x: hidden;
+        }
+        .dots-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);
+            background-size: 24px 24px; z-index: 0; pointer-events: none;
+        }
+        .container {
+            position: relative; z-index: 1;
+            max-width: 1100px; margin: 0 auto; padding: 40px 24px;
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+        .logo { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: #111; }
+        .logo span { color: #4f46e5; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { display: flex; list-style: none; gap: 4px; }
+        .nav-links a {
+            text-decoration: none; color: #6b7280; font-size: 14px; font-weight: 500;
+            padding: 8px 20px; border-radius: 8px; transition: all 0.2s;
+        }
+        .nav-links a:hover { color: #111; background: rgba(0,0,0,0.03); }
+        .nav-links a.active { color: #111; background: rgba(79,70,229,0.06); }
+
+        .main { flex: 1; padding: 60px 0; }
+        .page-title { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .page-sub { color: #6b7280; font-size: 15px; margin-bottom: 48px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+        .card {
+            background: #fff; border: 1px solid rgba(0,0,0,0.04); border-radius: 14px;
+            padding: 32px; transition: all 0.3s;
+        }
+        .card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.04); transform: translateY(-2px); }
+        .card-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+        .card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .card p { color: #6b7280; font-size: 14px; line-height: 1.7; }
+        .card .tag {
+            display: inline-block; margin-top: 12px; font-size: 12px; color: #4f46e5;
+            padding: 4px 12px; background: rgba(79,70,229,0.06); border-radius: 8px;
+        }
+
+        .timeline { margin-top: 60px; }
+        .timeline h2 { font-size: 22px; font-weight: 600; margin-bottom: 24px; }
+        .tl-item {
+            display: flex; gap: 20px; padding: 16px 0;
+            border-left: 2px solid rgba(79,70,229,0.1); padding-left: 24px;
+            position: relative;
+        }
+        .tl-item::before {
+            content: ''; position: absolute; left: -5px; top: 20px;
+            width: 8px; height: 8px; background: #4f46e5; border-radius: 50%;
+        }
+        .tl-year { font-size: 14px; font-weight: 600; color: #4f46e5; min-width: 60px; }
+        .tl-text p { color: #6b7280; font-size: 14px; line-height: 1.6; }
+
+        .back-link {
+            display: inline-block; margin-top: 40px; color: #4f46e5;
+            text-decoration: none; font-size: 14px; font-weight: 500;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .footer {
+            padding: 20px 0; border-top: 1px solid rgba(0,0,0,0.04);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer a { color: #9ca3af; text-decoration: none; font-size: 13px; }
+        .footer a:hover { color: #4f46e5; }
+        .footer .sep { color: #e5e7eb; margin: 0 12px; }
+
+        @media (max-width: 700px) {
+            .grid-2 { grid-template-columns: 1fr; }
+            .nav { flex-direction: column; gap: 12px; }
+            .footer { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dots-bg"></div>
+    <div class="container">
+        <nav class="nav">
+            <div class="logo"><a href="index.html">Stellar<span>X</span></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html" class="active">关于</a></li>
+                <li><a href="products.html">产品</a></li>
+                <li><a href="blog.html">博客</a></li>
+                <li><a href="contact.html">联系</a></li>
+            </ul>
+        </nav>
+
+        <div class="main">
+            <h1 class="page-title">关于我们</h1>
+            <p class="page-sub">用技术驱动创意，用代码构建价值</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <span class="card-icon">🎯</span>
+                    <h3>使命</h3>
+                    <p>探索技术与创意的交汇点，通过持续学习和实践，将想法转化为可用的产品和服务。</p>
+                    <span class="tag">Mission</span>
+                </div>
+                <div class="card">
+                    <span class="card-icon">👁️</span>
+                    <h3>愿景</h3>
+                    <p>打造一个充满活力的技术实验空间，记录成长轨迹，分享有价值的知识和经验。</p>
+                    <span class="tag">Vision</span>
+                </div>
+                <div class="card">
+                    <span class="card-icon">💡</span>
+                    <h3>价值观</h3>
+                    <p>保持好奇，勇于尝试，注重细节。相信技术的力量，也相信持续积累的价值。</p>
+                    <span class="tag">Values</span>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🚀</span>
+                    <h3>方向</h3>
+                    <p>专注于前端开发、云端部署、AI应用等领域，做有趣有料的项目。</p>
+                    <span class="tag">Focus</span>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h2>发展历程</h2>
+                <div class="tl-item">
+                    <div class="tl-year">2025</div>
+                    <div class="tl-text">
+                        <p>注册域名 stellarx.cn，开启域名与技术探索之旅。搭建个人网站，学习 DNS 配置、GitHub Pages 部署、Vercel 托管等技能。</p>
+                    </div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-year">2025</div>
+                    <div class="tl-text">
+                        <p>持续扩展站点功能，规划更多子页面和项目，记录每一次学习和实践的过程。</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="back-link">← 返回首页</a>
+        </div>
+
+        <div class="footer">
+            <div><span style="color:#9ca3af;font-size:13px;">© 2025 StellarX</span></div>
+            <div>
+                <a href="index.html">首页</a><span class="sep">·</span>
+                <a href="about.html">关于</a><span class="sep">·</span>
+                <a href="contact.html">联系</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

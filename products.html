@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品服务 | StellarX</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafbfc; color: #111; overflow-x: hidden;
+        }
+        .dots-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(rgba(0,0,0,0.06) 1px, transparent 1px);
+            background-size: 24px 24px; z-index: 0; pointer-events: none;
+        }
+        .container {
+            position: relative; z-index: 1;
+            max-width: 1100px; margin: 0 auto; padding: 40px 24px;
+            min-height: 100vh; display: flex; flex-direction: column;
+        }
+        .nav { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; }
+        .logo { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; color: #111; }
+        .logo span { color: #4f46e5; }
+        .logo a { text-decoration: none; color: inherit; }
+        .nav-links { display: flex; list-style: none; gap: 4px; }
+        .nav-links a {
+            text-decoration: none; color: #6b7280; font-size: 14px; font-weight: 500;
+            padding: 8px 20px; border-radius: 8px; transition: all 0.2s;
+        }
+        .nav-links a:hover { color: #111; background: rgba(0,0,0,0.03); }
+        .nav-links a.active { color: #111; background: rgba(79,70,229,0.06); }
+
+        .main { flex: 1; padding: 60px 0; }
+        .page-title { font-size: 32px; font-weight: 700; margin-bottom: 8px; }
+        .page-sub { color: #6b7280; font-size: 15px; margin-bottom: 48px; }
+
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .product-card {
+            background: #fff; border: 1px solid rgba(0,0,0,0.04); border-radius: 14px;
+            padding: 32px; transition: all 0.3s; position: relative; overflow: hidden;
+        }
+        .product-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 3px; background: linear-gradient(90deg, #4f46e5, #a855f7);
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .product-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.04); transform: translateY(-4px); }
+        .product-card:hover::before { opacity: 1; }
+        .p-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+        .product-card h3 { font-size: 18px; font-weight: 600; margin-bottom: 8px; }
+        .product-card p { color: #6b7280; font-size: 14px; line-height: 1.7; margin-bottom: 16px; }
+        .product-card .badge {
+            display: inline-block; font-size: 12px; padding: 4px 12px;
+            background: rgba(79,70,229,0.06); color: #4f46e5; border-radius: 8px;
+        }
+        .product-card .tag-new {
+            background: rgba(52,211,153,0.1); color: #059669;
+        }
+
+        .pricing {
+            margin-top: 60px; padding-top: 40px;
+            border-top: 1px solid rgba(0,0,0,0.04);
+        }
+        .pricing h2 { font-size: 22px; font-weight: 600; margin-bottom: 24px; }
+        .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .price-card {
+            background: #fff; border: 1px solid rgba(0,0,0,0.04); border-radius: 14px;
+            padding: 32px; text-align: center; transition: all 0.3s;
+        }
+        .price-card.featured {
+            border-color: rgba(79,70,229,0.2);
+            box-shadow: 0 4px 24px rgba(79,70,229,0.06);
+        }
+        .price-card h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+        .price { font-size: 36px; font-weight: 700; color: #4f46e5; }
+        .price span { font-size: 14px; color: #9ca3af; font-weight: 400; }
+        .price-card p { color: #6b7280; font-size: 13px; margin: 16px 0; line-height: 1.6; }
+        .price-btn {
+            display: inline-block; padding: 10px 28px; border-radius: 8px;
+            font-size: 13px; font-weight: 600; text-decoration: none;
+            border: 1px solid #e5e7eb; color: #111; transition: all 0.2s;
+        }
+        .price-btn:hover { border-color: #4f46e5; color: #4f46e5; }
+        .price-btn.primary { background: #111; color: #fff; border-color: #111; }
+        .price-btn.primary:hover { background: #222; }
+
+        .back-link {
+            display: inline-block; margin-top: 40px; color: #4f46e5;
+            text-decoration: none; font-size: 14px; font-weight: 500;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .footer {
+            padding: 20px 0; border-top: 1px solid rgba(0,0,0,0.04);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .footer a { color: #9ca3af; text-decoration: none; font-size: 13px; }
+        .footer a:hover { color: #4f46e5; }
+        .footer .sep { color: #e5e7eb; margin: 0 12px; }
+
+        @media (max-width: 800px) {
+            .grid-3 { grid-template-columns: 1fr; }
+            .price-grid { grid-template-columns: 1fr; }
+            .nav { flex-direction: column; gap: 12px; }
+            .footer { flex-direction: column; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dots-bg"></div>
+    <div class="container">
+        <nav class="nav">
+            <div class="logo"><a href="index.html">Stellar<span>X</span></a></div>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="about.html">关于</a></li>
+                <li><a href="products.html" class="active">产品</a></li>
+                <li><a href="blog.html">博客</a></li>
+                <li><a href="contact.html">联系</a></li>
+            </ul>
+        </nav>
+
+        <div class="main">
+            <h1 class="page-title">产品与服务</h1>
+            <p class="page-sub">持续打磨，用心交付</p>
+
+            <div class="grid-3">
+                <div class="product-card">
+                    <span class="p-icon">🌐</span>
+                    <h3>网站建设</h3>
+                    <p>从域名配置到前端开发，提供完整的网站搭建方案。适配移动端，注重性能与体验。</p>
+                    <span class="badge">Web Dev</span>
+                </div>
+                <div class="product-card">
+                    <span class="p-icon">☁️</span>
+                    <h3>云部署服务</h3>
+                    <p>GitHub Pages、Vercel、Cloudflare 等多平台部署，DNS 配置、HTTPS 证书一站式搞定。</p>
+                    <span class="badge">DevOps</span>
+                </div>
+                <div class="product-card">
+                    <span class="p-icon">🤖</span>
+                    <h3>AI 应用接入</h3>
+                    <p>对接即梦 AI、OpenAI 等平台 API，实现 AI 内容生成、自动化创作等场景落地。</p>
+                    <span class="badge tag-new">New</span>
+                </div>
+                <div class="product-card">
+                    <span class="p-icon">🎨</span>
+                    <h3>界面设计</h3>
+                    <p>简洁现代的 UI 设计，注重用户体验与视觉效果，适配品牌调性。</p>
+                    <span class="badge">Design</span>
+                </div>
+                <div class="product-card">
+                    <span class="p-icon">📊</span>
+                    <h3>技术咨询</h3>
+                    <p>提供前端开发、域名管理、部署运维等方面的技术建议与方案规划。</p>
+                    <span class="badge">Consulting</span>
+                </div>
+                <div class="product-card">
+                    <span class="p-icon">🔧</span>
+                    <h3>自定义开发</h3>
+                    <p>根据需求定制开发小型工具、页面、自动化脚本等，解决具体问题。</p>
+                    <span class="badge">Custom</span>
+                </div>
+            </div>
+
+            <div class="pricing">
+                <h2>服务方案</h2>
+                <div class="price-grid">
+                    <div class="price-card">
+                        <h4>基础</h4>
+                        <div class="price">免费 <span>/ 起</span></div>
+                        <p>基础咨询<br>技术文档分享<br>社区支持</p>
+                        <a href="#" class="price-btn">了解详情</a>
+                    </div>
+                    <div class="price-card featured">
+                        <h4>标准</h4>
+                        <div class="price">¥ <span>面议</span></div>
+                        <p>网站搭建<br>域名配置服务<br>部署运维指导</p>
+                        <a href="#" class="price-btn primary">联系咨询</a>
+                    </div>
+                    <div class="price-card">
+                        <h4>企业</h4>
+                        <div class="price">¥ <span>面议</span></div>
+                        <p>完整项目开发<br>AI 应用集成<br>长期技术支持</p>
+                        <a href="#" class="price-btn">联系咨询</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="index.html" class="back-link">← 返回首页</a>
+        </div>
+
+        <div class="footer">
+            <div><span style="color:#9ca3af;font-size:13px;">© 2025 StellarX</span></div>
+            <div>
+                <a href="index.html">首页</a><span class="sep">·</span>
+                <a href="products.html">产品</a><span class="sep">·</span>
+                <a href="contact.html">联系</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
